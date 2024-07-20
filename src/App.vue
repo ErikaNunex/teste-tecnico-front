@@ -1,30 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div id="app" class="d-flex flex-column vh-100">
+    <!-- navbar aqui -->
+    <main class="d-flex flex-grow-1">
+      <!-- sidebar aqui -->
+      <section class="content flex-grow-1">
+        <router-view />
+      </section>
+    </main>
+  </div>
 </template>
+
+<script setup lang="ts"></script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+.sidebar {
+  width: 280px;
+  height: 100%;
 }
 </style>
