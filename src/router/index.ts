@@ -1,27 +1,28 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import LoginView from "@/views/LoginView.vue";
+import DashboardView from "@/views/DashboardView.vue";
+import UsersView from "@/views/UsersView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "login",
-    component: () => {
-      import("@/views/LoginView.vue");
-    },
+    component: LoginView,
   },
   {
     path: "/dashboard",
     name: "dashboard",
-    component: () => import("@/views/DashboardView.vue"),
+    component: DashboardView,
   },
   {
     path: "/users",
     name: "users",
-    component: () => import("@/views/UsersView.vue"),
+    component: UsersView,
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
 });
 
