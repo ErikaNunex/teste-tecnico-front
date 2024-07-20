@@ -3,14 +3,27 @@
     <!-- navbar aqui -->
     <main class="d-flex flex-grow-1">
       <!-- sidebar aqui -->
-      <section class="content flex-grow-1">
+      <section
+        :class="{
+          content: true,
+          'flex-grow-1': true,
+          'login-container': isLoginView,
+        }"
+      >
         <router-view />
       </section>
     </main>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const isLoginView = computed(() => route.name == "login");
+</script>
 
 <style lang="scss">
 #app {
@@ -27,5 +40,8 @@
 .sidebar {
   width: 280px;
   height: 100%;
+}
+.login-container {
+  background-color: #93bf50;
 }
 </style>
