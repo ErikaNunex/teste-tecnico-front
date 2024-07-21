@@ -21,17 +21,19 @@
       />
     </div>
     <div class="card-body">
-      <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      <button type="submit" @click="submit()" class="btn btn-primary btn-block">
+        Entrar
+      </button>
     </div>
   </form>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import { LoginStore } from "@/modules/login/store";
+import { LoginService } from "../services/loginService";
 const loginStore = LoginStore();
+const loginService = new LoginService();
 
 const submit = () => {
-  console.log("Email:", loginStore.payloadLogin.email);
-  console.log("Senha:", loginStore.payloadLogin.password);
+  loginService.signIn(loginStore.payloadLogin);
 };
 </script>
