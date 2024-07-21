@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { LoginInterface } from "../interfaces/LoginInterface";
+import { LoginPayloadInterface } from "../interfaces/LoginPayloadInterface";
 export const LoginStore = defineStore("login", () => {
-  const payloadLogin = ref<LoginInterface>({
-    username: "",
+  const payloadLogin = ref<LoginPayloadInterface>({
+    email: "",
     password: "",
   });
   return {

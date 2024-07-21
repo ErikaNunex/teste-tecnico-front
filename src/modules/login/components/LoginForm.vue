@@ -1,13 +1,13 @@
 <template>
   <form @submit.prevent="submit">
     <div class="form-group">
-      <label for="username">Usuário</label>
+      <label for="email">Email</label>
       <input
         type="text"
         class="form-control"
-        id="username"
-        v-model="loginStore.payloadLogin.username"
-        placeholder="Digite seu usuário"
+        id="email"
+        v-model="loginStore.payloadLogin.email"
+        placeholder="Digite seu email de usuário"
       />
     </div>
     <div class="form-group">
@@ -31,7 +31,7 @@ import { LoginStore } from "@/modules/login/store";
 const loginStore = LoginStore();
 
 const submit = () => {
-  console.log("Usuário:", loginStore.payloadLogin.username);
+  console.log("Email:", loginStore.payloadLogin.email);
   console.log("Senha:", loginStore.payloadLogin.password);
 };
 </script>
