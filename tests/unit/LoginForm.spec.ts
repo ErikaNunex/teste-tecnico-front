@@ -19,4 +19,15 @@ describe("LoginForm.vue", () => {
     expect(wrapper.find("input#password").exists()).toBe(true);
     expect(wrapper.find("button").text()).toBe("Entrar");
   });
+  it("update email and password on input", async () => {
+    const wrapper = mount(LoginForm);
+
+    const email = wrapper.find("input#email");
+    await email.setValue("eve.holt@reqres.in");
+    expect(loginStore.payloadLogin.email).toBe("eve.holt@reqres.in");
+
+    const password = wrapper.find("input#password");
+    await password.setValue("123456");
+    expect(loginStore.payloadLogin.password).toBe("123456");
+  });
 });
