@@ -8,4 +8,7 @@ module.exports = {
   },
   transformIgnorePatterns: ["node_modules/(?!axios/)"],
   moduleFileExtensions: ["ts", "js", "vue", "json"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
 };
