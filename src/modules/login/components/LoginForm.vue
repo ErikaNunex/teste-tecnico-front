@@ -28,9 +28,9 @@
   </form>
 </template>
 <script setup lang="ts">
-import { LoginStore } from "@/modules/login/store";
+import { useLoginStore } from "@/modules/login/store";
 import { LoginService } from "../services/loginService";
-const loginStore = LoginStore();
+const loginStore = useLoginStore();
 const loginService = new LoginService();
 
 const submit = () => {
