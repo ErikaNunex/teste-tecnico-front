@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from "vue-router";
-import { ref, watch, computed } from "vue";
+import { computed } from "vue";
 import { redirect } from "@/shared/services/RoutingService";
 import { useSidebarStore } from "./stores/SidebarStore";
 const router = useRouter();
