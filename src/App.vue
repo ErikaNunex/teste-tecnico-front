@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="d-flex flex-column vh-100">
-    <!-- navbar aqui -->
+    <navbar-component :route-name="routeName" />
     <main class="d-flex flex-grow-1">
       <!-- sidebar aqui -->
       <section
@@ -19,9 +19,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import NavbarComponent from "./components/NavbarComponent.vue";
 
 const route = useRoute();
 
+const routeName = computed(() => {
+  return route.name;
+});
 const isLoginView = computed(() => route.name == "login");
 </script>
 
