@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="d-flex flex-column vh-100">
-    <navbar-component :route-name="routeName" />
+    <navbar-component v-if="!isLoginView" :route-name="routeName" />
     <main class="d-flex flex-grow-1">
-      <sidebar-component />
+      <sidebar-component v-if="!isLoginView" />
       <section
         :class="{
           content: true,
