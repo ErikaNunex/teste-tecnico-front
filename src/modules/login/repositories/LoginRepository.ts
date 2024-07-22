@@ -1,4 +1,4 @@
-import { post } from "@/repositories/BaseRepository";
+import { post } from "@/shared/repositories/BaseRepository";
 import { LoginPayloadInterface } from "@/modules/login/interfaces/LoginPayloadInterface";
 import { LoginResponseInterface } from "@/modules/login/interfaces/LoginResponseInterface";
 

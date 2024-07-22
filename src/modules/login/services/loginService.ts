@@ -1,4 +1,4 @@
-import { LoginRepository } from "@/repositories/LoginRepository";
+import { LoginRepository } from "@/modules/login/repositories/LoginRepository";
 import { LoginPayloadInterface } from "@/modules/login/interfaces/LoginPayloadInterface";
 
 export class LoginService {

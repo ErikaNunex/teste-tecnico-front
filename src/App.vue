@@ -2,7 +2,7 @@
   <div id="app" class="d-flex flex-column vh-100">
     <navbar-component :route-name="routeName" />
     <main class="d-flex flex-grow-1">
-      <!-- sidebar aqui -->
+      <sidebar-component />
       <section
         :class="{
           content: true,
@@ -19,8 +19,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import NavbarComponent from "./components/NavbarComponent.vue";
-
+import NavbarComponent from "@/shared/components/NavbarComponent.vue";
+import SidebarComponent from "@/shared/components/SidebarComponent.vue";
 const route = useRoute();
 
 const routeName = computed(() => {
