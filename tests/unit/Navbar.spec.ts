@@ -18,4 +18,15 @@ describe("NavbarComponent.vue", () => {
     });
     expect(wrapper.find("h2").text()).toBe(routeName);
   });
+  it("call toggleSidebar when button is clicked", async () => {
+    const routeName = "Dashboard";
+    const wrapper = mount(NavbarComponent, {
+      props: { routeName },
+    });
+    const spy = jest.spyOn(sidebarStore, "toggleSidebar");
+
+    await wrapper.find("button").trigger("click");
+
+    expect(spy).toHaveBeenCalled();
+  });
 });
