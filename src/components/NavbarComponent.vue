@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <span>{{ props.routeName }}</span>
+      <h2>{{ props.routeName }}</h2>
     </nav>
   </header>
 </template>
@@ -10,3 +10,8 @@ import { defineProps } from "vue";
 
 const props = defineProps({ routeName: { type: String, requered: true } });
 </script>
+<style scoped>
+.navbar {
+  height: 50px;
+}
+</style>
