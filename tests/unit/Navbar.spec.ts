@@ -10,4 +10,12 @@ describe("NavbarComponent.vue", () => {
     setActivePinia(createPinia());
     sidebarStore = useSidebarStore();
   });
+
+  it("render route name", () => {
+    const routeName = "Dashboard";
+    const wrapper = mount(NavbarComponent, {
+      props: { routeName },
+    });
+    expect(wrapper.find("h2").text()).toBe(routeName);
+  });
 });
