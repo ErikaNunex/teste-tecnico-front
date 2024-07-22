@@ -1,18 +1,12 @@
 <template>
   <div id="app" class="d-flex flex-column vh-100">
     <navbar-component v-if="!isLoginView" :route-name="routeName" />
-    <main class="d-flex flex-grow-1">
-      <sidebar-component v-if="!isLoginView" />
-      <section
-        :class="{
-          content: true,
-          'flex-grow-1': true,
-          'login-container': isLoginView,
-        }"
-      >
+    <div class="d-flex flex-grow-1">
+      <sidebar-component v-if="!isLoginView && isSidebarVisible" />
+      <section :class="{ content: true, 'login-container': isLoginView }">
         <router-view />
       </section>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -21,6 +15,10 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import NavbarComponent from "@/shared/components/NavbarComponent.vue";
 import SidebarComponent from "@/shared/components/SidebarComponent.vue";
+import { useSidebarStore } from "./shared/components/stores/SidebarStore";
+const sidebarStore = useSidebarStore();
+
+const isSidebarVisible = computed(() => sidebarStore.isSidebarVisible);
 const route = useRoute();
 
 const routeName = computed(() => {
@@ -36,12 +34,56 @@ const isLoginView = computed(() => route.name == "login");
   min-height: 100vh;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
 .content {
   flex-grow: 1;
   padding: 20px;
   background-color: #f5f5f5;
+  transition: margin-left 0.3s ease;
 }
+
 .login-container {
   background-color: #93bf50;
+}
+
+.sidebar-component {
+  width: 250px;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.sidebar-component {
+  transform: translateX(-100%);
+}
+
+.sidebar-component.visible {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .sidebar-component {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-component {
+    width: 100%;
+  }
+
+  .content {
+    margin-left: 0;
+  }
 }
 </style>
