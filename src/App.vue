@@ -41,10 +41,6 @@ const isLoginView = computed(() => route.name == "login");
   padding: 20px;
   background-color: #f5f5f5;
 }
-.sidebar {
-  width: 280px;
-  height: 100%;
-}
 .login-container {
   background-color: #93bf50;
 }
