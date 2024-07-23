@@ -48,4 +48,21 @@ describe("SidebarComponent.vue", () => {
       "Dashboard"
     );
   });
+  it("toggle visibility sidebarStore", async () => {
+    const wrapper = mount(SidebarComponent, {
+      global: {
+        plugins: [router],
+      },
+    });
+
+    sidebarStore.isSidebarVisible = true;
+    await nextTick();
+
+    expect(wrapper.find(".sidebar").classes()).toContain("visible");
+
+    sidebarStore.isSidebarVisible = false;
+    await nextTick();
+
+    expect(wrapper.find(".sidebar").classes()).not.toContain("visible");
+  });
 });
