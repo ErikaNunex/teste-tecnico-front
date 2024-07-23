@@ -88,5 +88,8 @@ const users = computed(() => userStore.user);
     display: flex;
     flex-direction: column;
   }
+  .header {
+    display: none;
+  }
 }
 </style>
