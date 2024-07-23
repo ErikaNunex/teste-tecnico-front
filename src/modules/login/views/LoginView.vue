@@ -19,7 +19,7 @@ import LoginForm from "../components/LoginForm.vue";
   justify-content: center;
   align-items: center;
   height: 80vh;
-  background-color: #93bf50;
+  background-color: #0e2940;
 }
 
 .card {
