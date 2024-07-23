@@ -26,3 +26,7 @@ export const patch = async <T>(
   const response = await api.patch(url, data);
   return response;
 };
+export const del = async (url: string): Promise<AxiosResponse> => {
+  const response = await api.delete(url);
+  return response;
+};
