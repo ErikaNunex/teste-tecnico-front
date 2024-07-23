@@ -34,7 +34,7 @@ import { useUserStore } from "@/modules/users/store";
 
 const userStore = useUserStore();
 
-const users = computed(() => userStore.user);
+const users = computed(() => userStore.users);
 </script>
 
 <style scoped>
