@@ -9,15 +9,14 @@
       />
       <i class="bi bi-search search-icon" @click="searchUser"></i>
     </div>
-    <CreateUserDialog />
+    <CreateUpdateUserDialog action="Criar Usuário" :create="true" />
   </header>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { UserService } from "../services/UsersServices";
-import { useUserStore } from "../store";
-import CreateUserDialog from "./CreateUserDialog.vue";
+import CreateUpdateUserDialog from "./CreateUpdateUserDialog.vue";
 
 const userService = new UserService();
 const search = ref<string>("");

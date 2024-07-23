@@ -1,7 +1,18 @@
 <template>
   <div>
-    <button class="btn btn-primary add-user" @click="isVisible = true">
+    <button
+      v-if="props.create"
+      class="btn btn-primary add-user"
+      @click="isVisible = true"
+    >
       +
+    </button>
+    <button
+      v-if="props.update"
+      @click="isVisible = true"
+      class="btn btn-outline-warning btn-sm"
+    >
+      <i class="bi bi-pencil"></i> Editar
     </button>
     <div
       v-if="isVisible"
@@ -14,7 +25,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="createUserModa">Criar Usuário</h5>
+            <h5 class="modal-title" id="createUserModa">{{ props.action }}</h5>
             <button
               type="button"
               class="btn-close"
@@ -51,9 +62,9 @@
             <button
               type="button"
               class="btn btn-primary btn-block"
-              @click="createUser"
+              @click="clickAction"
             >
-              Criar Usuário
+              {{ props.action }}
             </button>
           </div>
         </div>
@@ -63,10 +74,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 import { useUserStore } from "@/modules/users/store";
 import { UserService } from "../services/UsersServices";
 
+const props = defineProps({
+  action: String,
+  create: Boolean,
+  update: Boolean,
+  idUser: Number,
+});
 const userStore = useUserStore();
 const userService = new UserService();
 
@@ -80,6 +97,17 @@ const createUser = async () => {
   await userService.createUser(userStore.userRequest);
   closeDialog();
 };
+
+const updateUser = async () => {
+  if (props.idUser) {
+    await userService.updateUser(props.idUser);
+    closeDialog();
+  }
+};
+
+function clickAction() {
+  props.create ? createUser() : updateUser();
+}
 </script>
 
 <style scoped>

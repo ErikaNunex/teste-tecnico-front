@@ -17,9 +17,11 @@
         {{ user.email }}
       </div>
       <div class="column actions">
-        <button class="btn btn-outline-warning btn-sm">
-          <i class="bi bi-pencil"></i> Editar
-        </button>
+        <CreateUpdateUserDialog
+          action="Editar Usuário"
+          :update="true"
+          :id-user="user.id"
+        />
         <button class="btn btn-outline-danger btn-sm">
           <i class="bi bi-trash-fill"></i> Excluir
         </button>
@@ -31,6 +33,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useUserStore } from "@/modules/users/store";
+import CreateUpdateUserDialog from "./CreateUpdateUserDialog.vue";
 
 const userStore = useUserStore();
 
