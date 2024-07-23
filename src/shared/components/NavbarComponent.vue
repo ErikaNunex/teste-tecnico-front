@@ -1,8 +1,8 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
       <button
-        class="btn btn-light"
+        class="btn btn-lg"
         @click="toggleSidebar"
         aria-label="Toggle Sidebar"
       >
@@ -26,10 +26,13 @@ const toggleSidebar = () => {
 <style scoped>
 .navbar {
   height: 50px;
+  background-color: #0e2940;
+  color: #fff;
 }
 
 .btn {
   margin-right: 20px;
   margin-left: 20px;
+  color: #fff;
 }
 </style>

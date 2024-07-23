@@ -3,7 +3,7 @@
     <navbar-component v-if="!isLoginView" :route-name="routeName" />
     <div class="d-flex flex-grow-1">
       <sidebar-component v-if="!isLoginView && isSidebarVisible" />
-      <section :class="{ content: true, 'login-container': isLoginView }">
+      <section class="content">
         <router-view />
       </section>
     </div>
@@ -49,12 +49,8 @@ const isLoginView = computed(() => route.name == "login");
 .content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #2c3e59;
   transition: margin-left 0.3s ease;
-}
-
-.login-container {
-  background-color: #93bf50;
 }
 
 .sidebar-component {

@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <nav class="sidebar bg-light" :class="{ visible: isSidebarVisible }">
+    <nav class="sidebar" :class="{ visible: isSidebarVisible }">
       <ul class="list-group list-group-flush">
         <li
           class="list-group-item"
@@ -45,14 +45,12 @@ const isSidebarVisible = computed(() => sidebarStore.isSidebarVisible);
 .sidebar {
   width: 250px;
   height: 100%;
+  background-color: #0e2940;
   transition: transform 0.3s ease;
   transform: translateX(-100%);
   &.visible {
     transform: translateX(0);
   }
-}
-.sidebar-collapsed {
-  transform: translateX(-100%);
 }
 
 .list-group-item {
@@ -60,19 +58,21 @@ const isSidebarVisible = computed(() => sidebarStore.isSidebarVisible);
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: #0e2940;
+  color: #fff;
 
   &.active {
-    background-color: #e9f5e9;
-    color: #28a745;
+    background-color: #007bff;
+    color: #fff;
     font-weight: bold;
 
     &:hover {
-      background-color: #e9f5e9;
+      background-color: #007bff;
     }
   }
 
   &:hover {
-    background-color: #f8f9fa;
+    background-color: #0056b3;
   }
 }
 </style>
