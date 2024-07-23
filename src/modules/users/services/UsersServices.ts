@@ -54,4 +54,18 @@ export class UserService {
       console.error("Erro ao criar usuário:", error);
     }
   }
+
+  async updateUser(userId: number) {
+    const userStore = useUserStore();
+
+    try {
+      await this.userRepository.updateUser(userId, userStore.userRequest);
+      const updatedUserList = userStore.users.map((user) =>
+        user.id === userId ? { ...user, ...userStore.userRequest } : user
+      );
+      userStore.users = updatedUserList;
+    } catch (error) {
+      console.error("Erro ao editar  usuário:", error);
+    }
+  }
 }

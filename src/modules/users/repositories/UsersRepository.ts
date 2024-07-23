@@ -1,4 +1,4 @@
-import { get, post } from "@/shared/repositories/BaseRepository";
+import { get, post, patch } from "@/shared/repositories/BaseRepository";
 import { UserInterface } from "../interfaces/UserInterface";
 import { UserCreateInterface } from "../interfaces/UserCreateInterface";
 import { UserResponseInterface } from "../interfaces/UserResponseInterface";
@@ -23,5 +23,14 @@ export class UserRepository {
   async createUser(data: UserCreateInterface): Promise<UserResponseInterface> {
     const response = await post<UserCreateInterface>("/users", data);
     return response.data;
+  }
+  async updateUser(
+    userId: number,
+    userUpdateData: Partial<UserCreateInterface>
+  ): Promise<void> {
+    await patch<Partial<UserCreateInterface>>(
+      `/users/${userId}`,
+      userUpdateData
+    );
   }
 }
