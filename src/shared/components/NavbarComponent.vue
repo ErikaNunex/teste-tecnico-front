@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { useSidebarStore } from "./stores/SidebarStore";
+import { useSidebarStore } from "@/shared/stores/SidebarStore";
 
 const props = defineProps({ routeName: { type: String, requered: true } });
 const sidebarStore = useSidebarStore();

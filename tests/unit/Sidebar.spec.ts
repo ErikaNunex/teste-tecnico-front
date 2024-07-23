@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import SidebarComponent from "@/shared/components/SidebarComponent.vue";
 import { createPinia, setActivePinia } from "pinia";
-import { useSidebarStore } from "@/shared/components/stores/SidebarStore";
+import { useSidebarStore } from "@/shared/stores/SidebarStore";
 import { createRouter, createMemoryHistory, RouteRecordRaw } from "vue-router";
 import { nextTick } from "vue";
 

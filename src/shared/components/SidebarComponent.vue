@@ -27,7 +27,7 @@
 import { useRouter, useRoute } from "vue-router";
 import { computed } from "vue";
 import { redirect } from "@/shared/services/RoutingService";
-import { useSidebarStore } from "./stores/SidebarStore";
+import { useSidebarStore } from "@/shared/stores/SidebarStore";
 const router = useRouter();
 const route = useRoute();
 const sidebarStore = useSidebarStore();

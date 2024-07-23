@@ -15,7 +15,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import NavbarComponent from "@/shared/components/NavbarComponent.vue";
 import SidebarComponent from "@/shared/components/SidebarComponent.vue";
-import { useSidebarStore } from "./shared/components/stores/SidebarStore";
+import { useSidebarStore } from "@/shared/stores/SidebarStore";
 const sidebarStore = useSidebarStore();
 
 const isSidebarVisible = computed(() => sidebarStore.isSidebarVisible);
