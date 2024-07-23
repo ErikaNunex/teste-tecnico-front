@@ -68,4 +68,11 @@ export class UserService {
       console.error("Erro ao editar  usuário:", error);
     }
   }
+  async deleteUser(userId: number) {
+    try {
+      await this.userRepository.deleteUser(userId);
+    } catch (error) {
+      console.error("Erro ao deletar usuário:", error);
+    }
+  }
 }

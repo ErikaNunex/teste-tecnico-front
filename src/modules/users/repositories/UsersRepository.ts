@@ -1,4 +1,4 @@
-import { get, post, patch } from "@/shared/repositories/BaseRepository";
+import { get, post, patch, del } from "@/shared/repositories/BaseRepository";
 import { UserInterface } from "../interfaces/UserInterface";
 import { UserCreateInterface } from "../interfaces/UserCreateInterface";
 import { UserResponseInterface } from "../interfaces/UserResponseInterface";
@@ -32,5 +32,8 @@ export class UserRepository {
       `/users/${userId}`,
       userUpdateData
     );
+  }
+  async deleteUser(userId: number): Promise<void> {
+    await del(`/users/${userId}`);
   }
 }

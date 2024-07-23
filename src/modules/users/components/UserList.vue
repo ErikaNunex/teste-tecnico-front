@@ -17,12 +17,17 @@
         {{ user.email }}
       </div>
       <div class="column actions">
-        <CreateUpdateUserDialog
-          action="Editar Usuário"
-          :update="true"
-          :id-user="user.id"
-        />
-        <button class="btn btn-outline-danger btn-sm">
+        <div class="column">
+          <CreateUpdateUserDialog
+            action="Editar Usuário"
+            :update="true"
+            :id-user="user.id"
+          />
+        </div>
+        <button
+          class="btn btn-outline-danger btn-sm"
+          @click="userService.deleteUser(user.id)"
+        >
           <i class="bi bi-trash-fill"></i> Excluir
         </button>
       </div>
@@ -34,8 +39,10 @@
 import { computed } from "vue";
 import { useUserStore } from "@/modules/users/store";
 import CreateUpdateUserDialog from "./CreateUpdateUserDialog.vue";
+import { UserService } from "@/modules/users/services/UsersServices";
 
 const userStore = useUserStore();
+const userService = new UserService();
 
 const users = computed(() => userStore.users);
 </script>
