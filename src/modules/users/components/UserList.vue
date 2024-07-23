@@ -77,4 +77,16 @@ const users = computed(() => userStore.user);
 .actions button {
   margin-right: 0.5rem;
 }
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>
