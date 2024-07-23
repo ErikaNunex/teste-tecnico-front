@@ -18,3 +18,11 @@ export const get = async <T>(
   const response = await api.get<T>(url, { params });
   return response;
 };
+
+export const patch = async <T>(
+  url: string,
+  data: T
+): Promise<AxiosResponse> => {
+  const response = await api.patch(url, data);
+  return response;
+};
