@@ -1,14 +1,29 @@
 <template>
   <header class="user-header">
     <div class="input-container">
-      <input type="text" placeholder="Buscar usuário" />
-      <i class="bi bi-search search-icon"></i>
+      <input
+        v-model="search"
+        @change="searchUser"
+        type="text"
+        placeholder="Buscar usuário"
+      />
+      <i class="bi bi-search search-icon" @click="searchUser"></i>
     </div>
     <button class="btn btn-primary add-user">+</button>
   </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { UserService } from "../services/UsersServices";
+
+const userService = new UserService();
+const search = ref<string>("");
+
+function searchUser() {
+  userService.findUser(search.value);
+}
+</script>
 
 <style scoped>
 .user-header {

@@ -1,22 +1,21 @@
 import { UserRepository } from "@/modules/users/repositories/UsersRepository";
 import { PaginationService } from "@/shared/services/PaginationService";
 import { useUserStore } from "@/modules/users/store";
+import { UserInterface } from "../interfaces/UserInterface";
 
 export class UserService {
   private userRepository: UserRepository;
   private paginationService: PaginationService;
-
+  userStore = useUserStore();
   constructor() {
     this.userRepository = new UserRepository();
     this.paginationService = new PaginationService();
   }
 
   async getUsers(page: number) {
-    const userStore = useUserStore();
-
     try {
       const response = await this.userRepository.findUsers(page);
-      userStore.users = response.data;
+      this.userStore.users = response.data;
       this.paginationService.setPagination(
         response.page,
         response.per_page,
@@ -24,9 +23,26 @@ export class UserService {
         response.total_pages
       );
 
-      userStore.pagination = this.paginationService.pagination;
+      this.userStore.pagination = this.paginationService.pagination;
     } catch (error) {
       console.error("Erro ao listar usuários:", error);
+    }
+  }
+  async findUser(user: string) {
+    if (user.length < 3) {
+      return;
+    }
+
+    try {
+      const allUsers = this.userStore.users;
+      const filteredUsers = allUsers.filter(
+        (u: UserInterface) =>
+          u.first_name.toLowerCase().includes(user.toLowerCase()) ||
+          u.last_name.toLowerCase().includes(user.toLowerCase())
+      );
+      this.userStore.users = filteredUsers;
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
     }
   }
 }
