@@ -1,5 +1,7 @@
-import { get } from "@/shared/repositories/BaseRepository";
+import { get, post } from "@/shared/repositories/BaseRepository";
 import { UserInterface } from "../interfaces/UserInterface";
+import { UserCreateInterface } from "../interfaces/UserCreateInterface";
+import { UserResponseInterface } from "../interfaces/UserResponseInterface";
 
 interface UserPaginationResponse {
   page: number;
@@ -16,6 +18,10 @@ interface UserPaginationResponse {
 export class UserRepository {
   async findUsers(page: number): Promise<UserPaginationResponse> {
     const response = await get<UserPaginationResponse>(`/users?page=${page}`);
+    return response.data;
+  }
+  async createUser(data: UserCreateInterface): Promise<UserResponseInterface> {
+    const response = await post<UserCreateInterface>("/users", data);
     return response.data;
   }
 }

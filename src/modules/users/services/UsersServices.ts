@@ -2,6 +2,7 @@ import { UserRepository } from "@/modules/users/repositories/UsersRepository";
 import { PaginationService } from "@/shared/services/PaginationService";
 import { useUserStore } from "@/modules/users/store";
 import { UserInterface } from "../interfaces/UserInterface";
+import { UserCreateInterface } from "../interfaces/UserCreateInterface";
 
 export class UserService {
   private userRepository: UserRepository;
@@ -43,6 +44,14 @@ export class UserService {
       this.userStore.users = filteredUsers;
     } catch (error) {
       console.error("Erro ao buscar usuário:", error);
+    }
+  }
+  async createUser(userRequest: UserCreateInterface) {
+    try {
+      await this.userRepository.createUser(userRequest);
+      this.getUsers(1);
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error);
     }
   }
 }
