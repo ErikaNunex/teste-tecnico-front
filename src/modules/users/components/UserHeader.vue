@@ -9,13 +9,15 @@
       />
       <i class="bi bi-search search-icon" @click="searchUser"></i>
     </div>
-    <button class="btn btn-primary add-user">+</button>
+    <CreateUserDialog />
   </header>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { UserService } from "../services/UsersServices";
+import { useUserStore } from "../store";
+import CreateUserDialog from "./CreateUserDialog.vue";
 
 const userService = new UserService();
 const search = ref<string>("");
@@ -54,14 +56,5 @@ input {
   right: 0.5rem;
   cursor: pointer;
   color: #999;
-}
-
-.add-user {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>
