@@ -8,6 +8,7 @@
       :total="userStore.pagination.total"
       @pageChange="changePage"
     />
+    <AlertComponent />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import UserList from "@/modules/users/components/UserList.vue";
 import { useUserStore } from "../store";
 import { UserService } from "@/modules/users/services/UsersServices";
 import PaginationList from "@/shared/components/PaginationList.vue";
+import AlertComponent from "@/shared/components/AlertComponent.vue";
 
 const userService = new UserService();
 const userStore = useUserStore();

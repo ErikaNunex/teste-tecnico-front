@@ -3,11 +3,13 @@ import { PaginationService } from "@/shared/services/PaginationService";
 import { useUserStore } from "@/modules/users/store";
 import { UserInterface } from "../interfaces/UserInterface";
 import { UserCreateInterface } from "../interfaces/UserCreateInterface";
+import { useAlertStore } from "@/shared/stores/AlertStore";
 
 export class UserService {
   private userRepository: UserRepository;
   private paginationService: PaginationService;
   userStore = useUserStore();
+  alertStore = useAlertStore();
   constructor() {
     this.userRepository = new UserRepository();
     this.paginationService = new PaginationService();
@@ -25,8 +27,14 @@ export class UserService {
       );
 
       this.userStore.pagination = this.paginationService.pagination;
+      this.alertStore.message = "Usuários listados com sucesso!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "success";
     } catch (error) {
-      console.error("Erro ao listar usuários:", error);
+      this.alertStore.message = "Erro ao listar usuários!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "danger";
+      console.error(error);
     }
   }
   async findUser(user: string) {
@@ -42,8 +50,15 @@ export class UserService {
           u.last_name.toLowerCase().includes(user.toLowerCase())
       );
       this.userStore.users = filteredUsers;
+
+      this.alertStore.message = "Usuário encontrado com sucesso!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "success";
     } catch (error) {
-      console.error("Erro ao buscar usuário:", error);
+      this.alertStore.message = "Erro ao buscar usuário!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "danger";
+      console.error(error);
     }
   }
   async createUser(userRequest: UserCreateInterface) {
@@ -51,7 +66,10 @@ export class UserService {
       await this.userRepository.createUser(userRequest);
       this.getUsers(1);
     } catch (error) {
-      console.error("Erro ao criar usuário:", error);
+      this.alertStore.message = "Erro ao criar usuário!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "danger";
+      console.error(error);
     }
   }
 
@@ -64,15 +82,27 @@ export class UserService {
         user.id === userId ? { ...user, ...userStore.userRequest } : user
       );
       userStore.users = updatedUserList;
+      this.alertStore.message = "Usuário editado com sucesso!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "success";
     } catch (error) {
-      console.error("Erro ao editar  usuário:", error);
+      this.alertStore.message = "Erro ao editar usuário!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "danger";
+      console.error(error);
     }
   }
   async deleteUser(userId: number) {
     try {
       await this.userRepository.deleteUser(userId);
+      this.alertStore.message = "Usuário excluído com sucesso!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "success";
     } catch (error) {
-      console.error("Erro ao deletar usuário:", error);
+      this.alertStore.message = "Erro ao excluir usuário!";
+      this.alertStore.isVisible = true;
+      this.alertStore.type = "danger";
+      console.error(error);
     }
   }
 }

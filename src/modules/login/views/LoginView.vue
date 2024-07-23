@@ -6,11 +6,13 @@
         <LoginForm />
       </div>
     </div>
+    <AlertComponent />
   </div>
 </template>
 
 <script setup lang="ts">
 import LoginForm from "../components/LoginForm.vue";
+import AlertComponent from "@/shared/components/AlertComponent.vue";
 </script>
 
 <style scoped>
@@ -19,7 +21,7 @@ import LoginForm from "../components/LoginForm.vue";
   justify-content: center;
   align-items: center;
   height: 80vh;
-  background-color: #0e2940;
+  background-color: #2c3e59;
 }
 
 .card {
